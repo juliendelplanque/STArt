@@ -27,8 +27,9 @@ STArtMooseModel >> gtPapersIn:  composite [
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
-		column: 'Title' evaluated: [ :paper | GTObjectPrinter asTruncatedTextFrom: paper title ];
-		column: 'Year' evaluated: [ :paper | GTObjectPrinter asTruncatedTextFrom: paper year ];
+		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
+		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
+		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
 		send: [ :result | 
 			result isNil
 				ifTrue: [ nil ]

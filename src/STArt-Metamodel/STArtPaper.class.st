@@ -31,6 +31,16 @@ STArtPaper >> addTopic: aTopic [
 ]
 
 { #category : #accessing }
+STArtPaper >> authorNamesSeparatedByColons [
+	^ (self authors collect: #name) joinUsing: ', '
+]
+
+{ #category : #accessing }
+STArtPaper >> authors [
+	^ self written collect: #author
+]
+
+{ #category : #accessing }
 STArtPaper >> filePath [
 
 	<MSEProperty: #filePath type: #String>
