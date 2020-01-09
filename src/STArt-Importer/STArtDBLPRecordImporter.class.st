@@ -89,7 +89,7 @@ STArtDBLPRecordImporter >> newWrote [
 STArtDBLPRecordImporter >> parseXMLString [
 	| soup |
 	soup := Soup fromString: self xmlString.
-	self assert: soup children first name = 'dblp'.
+	self assert: (soup children anySatisfy: [ :child | child name = 'dblp' ]).
 	^ soup
 ]
 

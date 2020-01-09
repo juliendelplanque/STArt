@@ -19,6 +19,16 @@ STArtMooseModel >> gtAuthorsIn:  composite [
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
+STArtMooseModel >> gtInspectorActionImportDBLPRecord [
+	<gtInspectorAction>
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtDBLPImporterSpec on: self) openWithSpec];
+		icon: (self iconNamed: #dblpIcon);
+		title: 'Import dblp record'
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
 STArtMooseModel >> gtPapersIn:  composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ composite fastTable
