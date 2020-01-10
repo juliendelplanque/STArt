@@ -4,6 +4,17 @@ Class {
 	#category : #'STArt-Metamodel'
 }
 
+{ #category : #importing }
+STArtMooseModel class >> importFromFile: aFileReference [
+	^ aFileReference readStreamDo: [ :stream |
+		self importFromMSEStream: stream ]
+]
+
+{ #category : #combining }
+STArtMooseModel class >> meta [
+	^ STArtMetamodelGenerator metamodel
+]
+
 { #category : #querying }
 STArtMooseModel >> authors [
 	^ self allWithType: STArtAuthor
@@ -19,6 +30,15 @@ STArtMooseModel >> initialize [
 { #category : #querying }
 STArtMooseModel >> papers [
 	^ self allWithType: STArtPaper
+]
+
+{ #category : #saving }
+STArtMooseModel >> saveInFile: aFileReference [
+	aFileReference exists
+		ifTrue: [ self error: 'File already exists.' ].
+	
+	aFileReference writeStreamDo: [ :stream |
+		self exportToMSEStream: stream ]
 ]
 
 { #category : #'serialize/materialize' }

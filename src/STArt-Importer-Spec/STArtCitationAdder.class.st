@@ -44,7 +44,7 @@ STArtCitationAdder >> initializeWidgets [
 	listOfPapers := self newList.
 	listOfPapers
 		displayBlock: [ :p |
-			p ifNotNil: [ p title ] ];
+			p ifNotNil: [ p title , ', ' , p year asString , ', ' , p authorNamesSeparatedByColons ] ];
 		items: ((self paperToAddCitationTo mooseModel papers
 					\ self paperToAddCitationTo citedPapers
 					\ { self paperToAddCitationTo }) select: [ :p | p year <= self paperToAddCitationTo year ]).

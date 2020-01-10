@@ -116,6 +116,11 @@ STArtPaper >> isPaper [
 ]
 
 { #category : #accessing }
+STArtPaper >> name [
+	^ self title
+]
+
+{ #category : #accessing }
 STArtPaper >> outgoingCitations [
 	"Relation named: #outgoingCitations type: #STArtCitation opposite: #sourcePaper"
 
