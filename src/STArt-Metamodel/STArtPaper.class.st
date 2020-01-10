@@ -3,6 +3,8 @@ Class {
 	#superclass : #STArtEntity,
 	#instVars : [
 		'#filePath => FMProperty',
+		'#incomingCitations => FMMany type: #STArtCitation opposite: #targetPaper',
+		'#outgoingCitations => FMMany type: #STArtCitation opposite: #sourcePaper',
 		'#outgoingTopicReferences => FMMany type: #STArtTopicReference opposite: #paper',
 		'#source => FMOne type: #STArtPaperMetaDataSource opposite: #relatedPaper',
 		'#title => FMProperty',
@@ -19,6 +21,24 @@ STArtPaper class >> annotation [
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
+]
+
+{ #category : #editing }
+STArtPaper >> addCitedPaper: aPaper [
+	^ STArtCitation new
+		mooseModel: self mooseModel;
+		sourcePaper: self;
+		targetPaper: aPaper;
+		yourself
+]
+
+{ #category : #editing }
+STArtPaper >> addCitingPaper: aPaper [
+	^ STArtCitation new
+		mooseModel: self mooseModel;
+		sourcePaper: aPaper;
+		targetPaper: self;
+		yourself
 ]
 
 { #category : #'model building' }
@@ -41,6 +61,22 @@ STArtPaper >> authors [
 ]
 
 { #category : #accessing }
+STArtPaper >> citedPapers [
+	"Returns the papers I cite.
+	 That is to say papers appearing in my bibliography.
+	"
+	^ self outgoingCitations collect: #targetPaper
+]
+
+{ #category : #accessing }
+STArtPaper >> citingPapers [
+	"Returns the papers citing myself.
+	 That is to say papers for which I appear in their bibliography.
+	"
+	^ self incomingCitations collect: #sourcePaper
+]
+
+{ #category : #accessing }
 STArtPaper >> filePath [
 
 	<MSEProperty: #filePath type: #String>
@@ -56,11 +92,43 @@ STArtPaper >> filePath: anObject [
 
 ]
 
+{ #category : #accessing }
+STArtPaper >> incomingCitations [
+	"Relation named: #incomingCitations type: #STArtCitation opposite: #targetPaper"
+
+	<generated>
+	^ incomingCitations
+]
+
+{ #category : #accessing }
+STArtPaper >> incomingCitations: anObject [
+
+	<generated>
+	incomingCitations value: anObject
+
+]
+
 { #category : #testing }
 STArtPaper >> isPaper [
 
 	<generated>
 	^ true
+]
+
+{ #category : #accessing }
+STArtPaper >> outgoingCitations [
+	"Relation named: #outgoingCitations type: #STArtCitation opposite: #sourcePaper"
+
+	<generated>
+	^ outgoingCitations
+]
+
+{ #category : #accessing }
+STArtPaper >> outgoingCitations: anObject [
+
+	<generated>
+	outgoingCitations value: anObject
+
 ]
 
 { #category : #accessing }

@@ -121,4 +121,10 @@ STArtMetamodelGenerator >> defineRelations [
 		
 	(topic property: #incomingReferences)
 		-* (topicReference property: #topic).
+		
+	(paper property: #incomingCitations)
+		-* (citation property: #targetPaper).
+		
+	(paper property: #outgoingCitations)
+		-* (citation property: #sourcePaper)
 ]

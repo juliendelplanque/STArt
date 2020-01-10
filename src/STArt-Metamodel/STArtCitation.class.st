@@ -1,6 +1,10 @@
 Class {
 	#name : #STArtCitation,
 	#superclass : #STArtEntity,
+	#instVars : [
+		'#sourcePaper => FMOne type: #STArtPaper opposite: #outgoingCitations',
+		'#targetPaper => FMOne type: #STArtPaper opposite: #incomingCitations'
+	],
 	#category : #'STArt-Metamodel-Entities'
 }
 
@@ -11,4 +15,36 @@ STArtCitation class >> annotation [
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+STArtCitation >> sourcePaper [
+	"Relation named: #sourcePaper type: #STArtPaper opposite: #outgoingCitations"
+
+	<generated>
+	^ sourcePaper
+]
+
+{ #category : #accessing }
+STArtCitation >> sourcePaper: anObject [
+
+	<generated>
+	sourcePaper := anObject
+
+]
+
+{ #category : #accessing }
+STArtCitation >> targetPaper [
+	"Relation named: #targetPaper type: #STArtPaper opposite: #incomingCitations"
+
+	<generated>
+	^ targetPaper
+]
+
+{ #category : #accessing }
+STArtCitation >> targetPaper: anObject [
+
+	<generated>
+	targetPaper := anObject
+
 ]

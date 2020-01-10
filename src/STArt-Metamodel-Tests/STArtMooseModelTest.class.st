@@ -41,6 +41,68 @@ STArtMooseModelTest >> testAuthorCanWritePaper [
 ]
 
 { #category : #tests }
+STArtMooseModelTest >> testPaperCanBeCited [
+	| paper1 paper2 citation |
+	paper1 := STArtPaper new
+					mooseModel: model;
+					title: 'How to use STArt?';
+					year: 2018;
+					yourself.
+	paper2 := STArtPaper new
+					mooseModel: model;
+					title: 'How to do a great state of the art?';
+					year: 2019;
+					yourself.
+	
+	self assert: paper1 citedPapers isEmpty.
+	self assert: paper2 citedPapers isEmpty.
+	self assert: paper1 citingPapers isEmpty.
+	self assert: paper2 citingPapers isEmpty.
+	
+	citation := paper2 addCitedPaper: paper1.
+	
+	self assert: paper1 citedPapers isEmpty.
+	self assert: paper2 citedPapers size equals: 1.
+	self assert: paper2 citedPapers first equals: paper1.
+	self assert: paper2 outgoingCitations first equals: citation.
+	self assert: paper1 citingPapers size equals: 1.
+	self assert: paper1 citingPapers first equals: paper2.
+	self assert: paper1 incomingCitations first equals: citation.
+	self assert: paper2 citingPapers isEmpty.
+]
+
+{ #category : #tests }
+STArtMooseModelTest >> testPaperCanBeCitedTheOtherWayAround [
+	| paper1 paper2 citation |
+	paper1 := STArtPaper new
+					mooseModel: model;
+					title: 'How to use STArt?';
+					year: 2018;
+					yourself.
+	paper2 := STArtPaper new
+					mooseModel: model;
+					title: 'How to do a great state of the art?';
+					year: 2019;
+					yourself.
+	
+	self assert: paper1 citedPapers isEmpty.
+	self assert: paper2 citedPapers isEmpty.
+	self assert: paper1 citingPapers isEmpty.
+	self assert: paper2 citingPapers isEmpty.
+	
+	citation := paper1 addCitingPaper: paper2.
+	
+	self assert: paper1 citedPapers isEmpty.
+	self assert: paper2 citedPapers size equals: 1.
+	self assert: paper2 citedPapers first equals: paper1.
+	self assert: paper2 outgoingCitations first equals: citation.
+	self assert: paper1 citingPapers size equals: 1.
+	self assert: paper1 citingPapers first equals: paper2.
+	self assert: paper1 incomingCitations first equals: citation.
+	self assert: paper2 citingPapers isEmpty.
+]
+
+{ #category : #tests }
 STArtMooseModelTest >> testPaperCanHaveTopic [
 	|paper topic topicRef |
 	paper := STArtPaper new
