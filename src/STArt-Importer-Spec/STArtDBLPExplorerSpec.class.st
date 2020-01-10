@@ -30,7 +30,7 @@ STArtDBLPExplorerSpec >> importButton [
 	^ importButton
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 STArtDBLPExplorerSpec >> importSelectedPaper [
 	| dblpXml |
 	self results selectedItem ifNil: [ self error: 'Not item selected.' ].
@@ -40,6 +40,12 @@ STArtDBLPExplorerSpec >> importSelectedPaper [
 	(STArtDBLPImporterSpec on: self model)
 		xmlContent: dblpXml;
 		openWithSpec
+]
+
+{ #category : #initialization }
+STArtDBLPExplorerSpec >> initialize [
+	super initialize.
+	self title: 'Explore DBLP'
 ]
 
 { #category : #initialization }
@@ -55,7 +61,9 @@ STArtDBLPExplorerSpec >> initializeWidgets [
 		action: [ self searchDBLPAndFillResults ].
 	results
 		displayBlock: [ :item |
-			item ifNotNil: [ (item findTag: 'title') string ] ].
+			item ifNotNil: [ (item findTag: 'title') string ] ];
+		whenSelectedItemChanged: [ :item |
+			importButton enabled: item isNotNil ].
 		
 	importButton
 		label: 'Import selected paper';
@@ -83,7 +91,7 @@ STArtDBLPExplorerSpec >> searchButton [
 	^ searchButton
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 STArtDBLPExplorerSpec >> searchDBLPAndFillResults [
 	| s |
 	s := Soup fromString: ('https://dblp.uni-trier.de/search/publ/api' asZnUrl

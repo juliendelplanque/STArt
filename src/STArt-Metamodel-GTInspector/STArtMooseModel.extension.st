@@ -24,8 +24,18 @@ STArtMooseModel >> gtInspectorActionImportDBLPRecord [
 	^ GLMGenericAction new
 		action: [ :composite | 
 			(STArtDBLPImporterSpec on: self) openWithSpec];
-		icon: (self iconNamed: #dblpIcon);
+		icon: (self iconNamed: #dblpImportIcon);
 		title: 'Import dblp record'
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtMooseModel >> gtInspectorActionSearchDBLP [
+	<gtInspectorAction>
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtDBLPExplorerSpec on: self) openWithSpec];
+		icon: (self iconNamed: #dblpSearchIcon);
+		title: 'Search dblp'
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }

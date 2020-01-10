@@ -25,6 +25,12 @@ STArtDBLPImporterSpec >> importButton [
 ]
 
 { #category : #initialization }
+STArtDBLPImporterSpec >> initialize [
+	super initialize.
+	self title: 'Import DBLP record'
+]
+
+{ #category : #initialization }
 STArtDBLPImporterSpec >> initializeWidgets [
 	inputText := self newTextInput.
 	inputText autoAccept: true.
