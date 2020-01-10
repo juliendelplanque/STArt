@@ -61,7 +61,7 @@ STArtDBLPExplorerSpec >> initializeWidgets [
 		action: [ self searchDBLPAndFillResults ].
 	results
 		displayBlock: [ :item |
-			item ifNotNil: [ (item findTag: 'title') string ] ];
+			item ifNotNil: [ (item findTag: 'title') string, ' - ' , (item findTag: 'year') string ] ];
 		whenSelectedItemChanged: [ :item |
 			importButton enabled: item isNotNil ].
 		

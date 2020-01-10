@@ -57,3 +57,13 @@ STArtPaper >> gtCitingPapersIn: composite [
 					ifTrue: [result anyOne ]  
 					ifFalse: [self species withAll: result]]]
 ]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtPaper >> gtInspectorActionAddCitedPaper [
+	<gtInspectorAction>
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtCitationAdder on: self) openWithSpec ];
+		icon: (self iconNamed: #up);
+		title: 'Add cited paper'
+]
