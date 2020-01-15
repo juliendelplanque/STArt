@@ -1,7 +1,7 @@
-Extension { #name : #STArtMooseModel }
+Extension { #name : #STArtModel }
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtMooseModel >> gtAuthorsIn:  composite [
+STArtModel >> gtAuthorsIn:  composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ composite fastTable
 		title: 'Authors';
@@ -19,7 +19,7 @@ STArtMooseModel >> gtAuthorsIn:  composite [
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtMooseModel >> gtInspectorActionImportDBLPRecord [
+STArtModel >> gtInspectorActionImportDBLPRecord [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ :composite | 
@@ -29,7 +29,7 @@ STArtMooseModel >> gtInspectorActionImportDBLPRecord [
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtMooseModel >> gtInspectorActionSearchDBLP [
+STArtModel >> gtInspectorActionSearchDBLP [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ :composite | 
@@ -39,7 +39,7 @@ STArtMooseModel >> gtInspectorActionSearchDBLP [
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtMooseModel >> gtPapersIn:  composite [
+STArtModel >> gtPapersIn:  composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ composite fastTable
 		title: 'Papers';

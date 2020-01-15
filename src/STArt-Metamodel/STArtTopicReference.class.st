@@ -11,7 +11,7 @@ Class {
 { #category : #meta }
 STArtTopicReference class >> annotation [
 
-	<MSEClass: #TopicReference super: #STArtEntity>
+	<FMClass: #TopicReference super: #STArtEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -30,7 +30,6 @@ STArtTopicReference >> paper: anObject [
 
 	<generated>
 	paper := anObject
-
 ]
 
 { #category : #accessing }
@@ -46,5 +45,4 @@ STArtTopicReference >> topic: anObject [
 
 	<generated>
 	topic := anObject
-
 ]

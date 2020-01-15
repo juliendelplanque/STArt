@@ -1,13 +1,15 @@
 Class {
 	#name : #STArtEntity,
 	#superclass : #MooseEntity,
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'STArt-Metamodel-Entities'
 }
 
 { #category : #meta }
 STArtEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -17,7 +19,7 @@ STArtEntity class >> annotation [
 STArtEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #STArtMetamodelGenerator) metamodel
+	^ STArtModel metamodel
 ]
 
 { #category : #testing }

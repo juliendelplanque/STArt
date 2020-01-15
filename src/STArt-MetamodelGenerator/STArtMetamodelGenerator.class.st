@@ -16,17 +16,6 @@ Class {
 	#category : #'STArt-MetamodelGenerator'
 }
 
-{ #category : #accessing }
-STArtMetamodelGenerator class >> basicMetamodelClasses [
-
-	| classes |
-	
-	classes := super basicMetamodelClasses.	
-	classes addAll: self basicFamixTraits.
-	
-	^ classes
-]
-
 { #category : #generation }
 STArtMetamodelGenerator class >> generate [
 	<script>
@@ -74,10 +63,11 @@ STArtMetamodelGenerator >> defineClasses [
 { #category : #definition }
 STArtMetamodelGenerator >> defineHierarchy [
 	super defineHierarchy.
+	entity --|> #TDependencyQueries.
+	entity --|> #TEntityMetaLevelDependency.
+	
 	namedEntity --|> #TNamed.
 	namedEntity --|> entity.
-	namedEntity --|> #TDependencyQueries.
-	namedEntity --|> #TEntityMetaLevelDependency.
 	
 	author --|> namedEntity.
 	paper --|> entity.
@@ -108,10 +98,10 @@ STArtMetamodelGenerator >> defineRelations [
 	super defineRelations.
 	
 	(author property: #wrote)
-		-* (wrote property: #author).
+		-* (wrote property: #author) source.
 		
 	(paper property: #written)
-		-* (wrote property: #paper).
+		-* (wrote property: #paper) target.
 		
 	(paper property: #outgoingTopicReferences)
 		-* (topicReference property: #paper).

@@ -10,10 +10,16 @@ Class {
 { #category : #meta }
 STArtTopic class >> annotation [
 
-	<MSEClass: #Topic super: #STArtNamedEntity>
+	<FMClass: #Topic super: #STArtNamedEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
+]
+
+{ #category : #adding }
+STArtTopic >> addIncomingReference: anObject [
+	<generated>
+	^ self incomingReferences add: anObject
 ]
 
 { #category : #accessing }
@@ -21,6 +27,7 @@ STArtTopic >> incomingReferences [
 	"Relation named: #incomingReferences type: #STArtTopicReference opposite: #topic"
 
 	<generated>
+	<derived>
 	^ incomingReferences
 ]
 
@@ -29,7 +36,6 @@ STArtTopic >> incomingReferences: anObject [
 
 	<generated>
 	incomingReferences value: anObject
-
 ]
 
 { #category : #testing }

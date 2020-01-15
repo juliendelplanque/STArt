@@ -11,7 +11,7 @@ Class {
 { #category : #meta }
 STArtWrote class >> annotation [
 
-	<MSEClass: #Wrote super: #STArtEntity>
+	<FMClass: #Wrote super: #STArtEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -22,6 +22,7 @@ STArtWrote >> author [
 	"Relation named: #author type: #STArtAuthor opposite: #wrote"
 
 	<generated>
+	<source>
 	^ author
 ]
 
@@ -30,7 +31,6 @@ STArtWrote >> author: anObject [
 
 	<generated>
 	author := anObject
-
 ]
 
 { #category : #accessing }
@@ -38,6 +38,7 @@ STArtWrote >> paper [
 	"Relation named: #paper type: #STArtPaper opposite: #written"
 
 	<generated>
+	<target>
 	^ paper
 ]
 
@@ -46,5 +47,4 @@ STArtWrote >> paper: anObject [
 
 	<generated>
 	paper := anObject
-
 ]

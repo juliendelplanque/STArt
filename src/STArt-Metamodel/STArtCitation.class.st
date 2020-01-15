@@ -11,7 +11,7 @@ Class {
 { #category : #meta }
 STArtCitation class >> annotation [
 
-	<MSEClass: #Citation super: #STArtEntity>
+	<FMClass: #Citation super: #STArtEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -30,7 +30,6 @@ STArtCitation >> sourcePaper: anObject [
 
 	<generated>
 	sourcePaper := anObject
-
 ]
 
 { #category : #accessing }
@@ -46,5 +45,4 @@ STArtCitation >> targetPaper: anObject [
 
 	<generated>
 	targetPaper := anObject
-
 ]

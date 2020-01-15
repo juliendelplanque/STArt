@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 STArtPaperMetaDataStringSource class >> annotation [
 
-	<MSEClass: #PaperMetaDataStringSource super: #STArtPaperMetaDataSource>
+	<FMClass: #PaperMetaDataStringSource super: #STArtPaperMetaDataSource>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -19,17 +19,15 @@ STArtPaperMetaDataStringSource class >> annotation [
 { #category : #accessing }
 STArtPaperMetaDataStringSource >> content [
 
-	<MSEProperty: #content type: #String>
+	<FMProperty: #content type: #String>
 	<generated>
 	^ content
 ]
 
 { #category : #accessing }
 STArtPaperMetaDataStringSource >> content: anObject [
-
 	<generated>
 	content := anObject
-
 ]
 
 { #category : #'serialize/materialize' }

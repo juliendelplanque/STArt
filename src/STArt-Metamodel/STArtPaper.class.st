@@ -17,7 +17,7 @@ Class {
 { #category : #meta }
 STArtPaper class >> annotation [
 
-	<MSEClass: #Paper super: #STArtEntity>
+	<FMClass: #Paper super: #STArtEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -41,6 +41,24 @@ STArtPaper >> addCitingPaper: aPaper [
 		yourself
 ]
 
+{ #category : #adding }
+STArtPaper >> addIncomingCitation: anObject [
+	<generated>
+	^ self incomingCitations add: anObject
+]
+
+{ #category : #adding }
+STArtPaper >> addOutgoingCitation: anObject [
+	<generated>
+	^ self outgoingCitations add: anObject
+]
+
+{ #category : #adding }
+STArtPaper >> addOutgoingTopicReference: anObject [
+	<generated>
+	^ self outgoingTopicReferences add: anObject
+]
+
 { #category : #'model building' }
 STArtPaper >> addTopic: aTopic [ 
 	^ STArtTopicReference new
@@ -48,6 +66,12 @@ STArtPaper >> addTopic: aTopic [
 		topic: aTopic;
 		paper: self;
 		yourself
+]
+
+{ #category : #adding }
+STArtPaper >> addWritten: anObject [
+	<generated>
+	^ self written add: anObject
 ]
 
 { #category : #accessing }
@@ -79,17 +103,15 @@ STArtPaper >> citingPapers [
 { #category : #accessing }
 STArtPaper >> filePath [
 
-	<MSEProperty: #filePath type: #String>
+	<FMProperty: #filePath type: #String>
 	<generated>
 	^ filePath
 ]
 
 { #category : #accessing }
 STArtPaper >> filePath: anObject [
-
 	<generated>
 	filePath := anObject
-
 ]
 
 { #category : #accessing }
@@ -97,6 +119,7 @@ STArtPaper >> incomingCitations [
 	"Relation named: #incomingCitations type: #STArtCitation opposite: #targetPaper"
 
 	<generated>
+	<derived>
 	^ incomingCitations
 ]
 
@@ -105,7 +128,6 @@ STArtPaper >> incomingCitations: anObject [
 
 	<generated>
 	incomingCitations value: anObject
-
 ]
 
 { #category : #testing }
@@ -125,6 +147,7 @@ STArtPaper >> outgoingCitations [
 	"Relation named: #outgoingCitations type: #STArtCitation opposite: #sourcePaper"
 
 	<generated>
+	<derived>
 	^ outgoingCitations
 ]
 
@@ -133,7 +156,6 @@ STArtPaper >> outgoingCitations: anObject [
 
 	<generated>
 	outgoingCitations value: anObject
-
 ]
 
 { #category : #accessing }
@@ -141,6 +163,7 @@ STArtPaper >> outgoingTopicReferences [
 	"Relation named: #outgoingTopicReferences type: #STArtTopicReference opposite: #paper"
 
 	<generated>
+	<derived>
 	^ outgoingTopicReferences
 ]
 
@@ -149,7 +172,6 @@ STArtPaper >> outgoingTopicReferences: anObject [
 
 	<generated>
 	outgoingTopicReferences value: anObject
-
 ]
 
 { #category : #accessing }
@@ -165,23 +187,20 @@ STArtPaper >> source: anObject [
 
 	<generated>
 	source := anObject
-
 ]
 
 { #category : #accessing }
 STArtPaper >> title [
 
-	<MSEProperty: #title type: #String>
+	<FMProperty: #title type: #String>
 	<generated>
 	^ title
 ]
 
 { #category : #accessing }
 STArtPaper >> title: anObject [
-
 	<generated>
 	title := anObject
-
 ]
 
 { #category : #accessing }
@@ -189,6 +208,7 @@ STArtPaper >> written [
 	"Relation named: #written type: #STArtWrote opposite: #paper"
 
 	<generated>
+	<derived>
 	^ written
 ]
 
@@ -197,21 +217,18 @@ STArtPaper >> written: anObject [
 
 	<generated>
 	written value: anObject
-
 ]
 
 { #category : #accessing }
 STArtPaper >> year [
 
-	<MSEProperty: #year type: #Number>
+	<FMProperty: #year type: #Number>
 	<generated>
 	^ year
 ]
 
 { #category : #accessing }
 STArtPaper >> year: anObject [
-
 	<generated>
 	year := anObject
-
 ]

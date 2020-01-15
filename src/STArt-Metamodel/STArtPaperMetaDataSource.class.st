@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 STArtPaperMetaDataSource class >> annotation [
 
-	<MSEClass: #PaperMetaDataSource super: #STArtEntity>
+	<FMClass: #PaperMetaDataSource super: #STArtEntity>
 	<package: #'STArt-Metamodel'>
 	<generated>
 	^self
@@ -21,6 +21,7 @@ STArtPaperMetaDataSource >> relatedPaper [
 	"Relation named: #relatedPaper type: #STArtPaper opposite: #source"
 
 	<generated>
+	<derived>
 	^ relatedPaper
 ]
 
@@ -29,7 +30,6 @@ STArtPaperMetaDataSource >> relatedPaper: anObject [
 
 	<generated>
 	relatedPaper := anObject
-
 ]
 
 { #category : #'serialize/materialize' }
