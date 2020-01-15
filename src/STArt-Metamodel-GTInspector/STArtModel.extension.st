@@ -1,7 +1,7 @@
 Extension { #name : #STArtModel }
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtModel >> gtAuthorsIn:  composite [
+STArtModel >> gtAuthorsIn: composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ composite fastTable
 		title: 'Authors';
@@ -41,15 +41,23 @@ STArtModel >> gtInspectorActionSearchDBLP [
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtModel >> gtPapersIn:  composite [
 	<gtInspectorPresentationOrder: 0> 
-	^ composite fastTable
+	^ (STArtInspectorExtensionBuilder gtShowPapersIn: composite)
 		title: 'Papers';
 		display: [ self papers ];
+		yourself
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtModel >> gtPublicationTargetsIn: composite [
+	<gtInspectorPresentationOrder: 10> 
+	^ composite fastTable
+		title: 'Publication targets';
+		display: [ self publicationTargets ];
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
-		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
-		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
-		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
+		column: 'Name' evaluated: [ :target | GTObjectPrinter asTruncatedTextFrom: target name ];
+		column: 'Kind' evaluated: [ :target | GTObjectPrinter asTruncatedTextFrom: target class name ];
 		send: [ :result | 
 			result isNil
 				ifTrue: [ nil ]

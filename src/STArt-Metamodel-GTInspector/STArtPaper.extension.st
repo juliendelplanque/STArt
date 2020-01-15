@@ -21,41 +21,19 @@ STArtPaper >> gtAuthorsIn:  composite [
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtPaper >> gtCitedPapersIn: composite [
 	<gtInspectorPresentationOrder: 11> 
-	^ composite fastTable
+	^ (self gtShowPapersIn: composite)
 		title: 'Cited Papers';
 		display: [ self citedPapers ];
-		beMultiple;
-		enableElementIndex;
-		wantsAutomaticRefresh: true;
-		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
-		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
-		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
-		send: [ :result | 
-			result isNil
-				ifTrue: [ nil ]
-				ifFalse: [ result size = 1 
-					ifTrue: [result anyOne ]  
-					ifFalse: [self species withAll: result]]]
+		yourself
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtPaper >> gtCitingPapersIn: composite [
 	<gtInspectorPresentationOrder: 12> 
-	^ composite fastTable
+	^ (self gtShowPapersIn: composite)
 		title: 'Citing Papers';
 		display: [ self citingPapers ];
-		beMultiple;
-		enableElementIndex;
-		wantsAutomaticRefresh: true;
-		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
-		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
-		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
-		send: [ :result | 
-			result isNil
-				ifTrue: [ nil ]
-				ifFalse: [ result size = 1 
-					ifTrue: [result anyOne ]  
-					ifFalse: [self species withAll: result]]]
+		yourself
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
