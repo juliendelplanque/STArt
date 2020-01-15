@@ -23,6 +23,12 @@ STArtPublicationTarget >> addPaper: anObject [
 ]
 
 { #category : #accessing }
+STArtPublicationTarget >> authors [
+	"Returns all the authors that published a paper at least once in this target."
+	^ (self papers flatCollect: [ :paper | paper authors ]) asSet asArray
+]
+
+{ #category : #accessing }
 STArtPublicationTarget >> papers [
 	"Relation named: #papers type: #STArtPaper opposite: #publicationTarget"
 
