@@ -5,6 +5,27 @@ Class {
 }
 
 { #category : #'extension building' }
+STArtInspectorExtensionBuilder class >> gtShowAuthorsIn: composite [
+	"Builds a fast table configured to display authors data.
+	 The goal for this method is to avoid duplicating the code everywhere as authors
+	 tab is something often needed in inspector views.
+	"
+	^ composite fastTable
+		title: 'Authors';
+		beMultiple;
+		enableElementIndex;
+		wantsAutomaticRefresh: true;
+		column: 'Name' evaluated: [ :author | author name ];
+		send: [ :result | 
+			result isNil
+				ifTrue: [ nil ]
+				ifFalse: [ result size = 1 
+					ifTrue: [result anyOne ]  
+					ifFalse: [self species withAll: result ]]];
+		yourself
+]
+
+{ #category : #'extension building' }
 STArtInspectorExtensionBuilder class >> gtShowPapersIn: composite [
 	"Builds a fast table configured to display papers data.
 	 The goal for this method is to avoid duplicating the code everywhere as paper
