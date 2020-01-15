@@ -22,26 +22,6 @@ STArtAuthor >> addWrote: anObject [
 	^ self wrote add: anObject
 ]
 
-{ #category : #'as yet unclassified' }
-STArtAuthor >> gtWrittenPapersIn: composite [
-	<gtInspectorPresentationOrder: 11> 
-	^ composite fastTable
-		title: 'Written Papers';
-		display: [ self writtenPapers ];
-		beMultiple;
-		enableElementIndex;
-		wantsAutomaticRefresh: true;
-		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
-		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
-		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
-		send: [ :result | 
-			result isNil
-				ifTrue: [ nil ]
-				ifFalse: [ result size = 1 
-					ifTrue: [result anyOne ]  
-					ifFalse: [self species withAll: result]]]
-]
-
 { #category : #testing }
 STArtAuthor >> isAuthor [
 

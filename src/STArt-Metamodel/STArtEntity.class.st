@@ -30,6 +30,20 @@ STArtEntity >> isAuthor [
 ]
 
 { #category : #testing }
+STArtEntity >> isConference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+STArtEntity >> isJournal [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 STArtEntity >> isPaper [
 
 	<generated>
@@ -38,6 +52,13 @@ STArtEntity >> isPaper [
 
 { #category : #testing }
 STArtEntity >> isTopic [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+STArtEntity >> isWorkshop [
 
 	<generated>
 	^ false

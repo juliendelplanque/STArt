@@ -11,7 +11,11 @@ Class {
 		'entity',
 		'namedEntity',
 		'paperMetaDataSource',
-		'paperMetaDataStringSource'
+		'paperMetaDataStringSource',
+		'publicationTarget',
+		'conference',
+		'journal',
+		'workshop'
 	],
 	#category : #'STArt-MetamodelGenerator'
 }
@@ -48,6 +52,10 @@ STArtMetamodelGenerator >> defineClasses [
 	author := builder newClassNamed: #'Author'.
 	paper :=  builder newClassNamed: #'Paper'.
 	topic := builder newClassNamed: #'Topic'.
+	publicationTarget := builder newClassNamed: #PublicationTarget.
+	conference := builder newClassNamed: #Conference.
+	journal := builder newClassNamed: #Journal.
+	workshop := builder newClassNamed: #Workshop.
 	paperMetaDataSource := builder newClassNamed: #'PaperMetaDataSource'.
 	paperMetaDataStringSource := builder newClassNamed: #'PaperMetaDataStringSource'.
 	
@@ -57,7 +65,10 @@ STArtMetamodelGenerator >> defineClasses [
 	
 	author withTesting.
 	paper withTesting.
-	topic withTesting
+	topic withTesting.
+	conference withTesting.
+	journal withTesting.
+	workshop withTesting.
 ]
 
 { #category : #definition }
@@ -72,6 +83,10 @@ STArtMetamodelGenerator >> defineHierarchy [
 	author --|> namedEntity.
 	paper --|> entity.
 	topic --|> namedEntity.
+	publicationTarget --|> namedEntity.
+	conference --|> publicationTarget.
+	journal --|> publicationTarget.
+	workshop --|> publicationTarget.
 	paperMetaDataSource --|> entity.
 	paperMetaDataStringSource --|> paperMetaDataSource.
 	
@@ -116,5 +131,8 @@ STArtMetamodelGenerator >> defineRelations [
 		-* (citation property: #targetPaper).
 		
 	(paper property: #outgoingCitations)
-		-* (citation property: #sourcePaper)
+		-* (citation property: #sourcePaper).
+		
+	(paper property: #publicationTarget)
+		*- (publicationTarget property: #papers)
 ]

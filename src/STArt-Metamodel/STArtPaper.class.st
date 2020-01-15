@@ -6,6 +6,7 @@ Class {
 		'#incomingCitations => FMMany type: #STArtCitation opposite: #targetPaper',
 		'#outgoingCitations => FMMany type: #STArtCitation opposite: #sourcePaper',
 		'#outgoingTopicReferences => FMMany type: #STArtTopicReference opposite: #paper',
+		'#publicationTarget => FMOne type: #STArtPublicationTarget opposite: #papers',
 		'#source => FMOne type: #STArtPaperMetaDataSource opposite: #relatedPaper',
 		'#title => FMProperty',
 		'#written => FMMany type: #STArtWrote opposite: #paper',
@@ -172,6 +173,21 @@ STArtPaper >> outgoingTopicReferences: anObject [
 
 	<generated>
 	outgoingTopicReferences value: anObject
+]
+
+{ #category : #accessing }
+STArtPaper >> publicationTarget [
+	"Relation named: #publicationTarget type: #STArtPublicationTarget opposite: #papers"
+
+	<generated>
+	^ publicationTarget
+]
+
+{ #category : #accessing }
+STArtPaper >> publicationTarget: anObject [
+
+	<generated>
+	publicationTarget := anObject
 ]
 
 { #category : #accessing }

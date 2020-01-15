@@ -33,6 +33,11 @@ STArtModel >> papers [
 	^ self allWithType: STArtPaper
 ]
 
+{ #category : #querying }
+STArtModel >> publicationTargets [
+	^ self allWithSubTypesOf: STArtPublicationTarget
+]
+
 { #category : #saving }
 STArtModel >> saveInFile: aFileReference [
 	aFileReference exists
