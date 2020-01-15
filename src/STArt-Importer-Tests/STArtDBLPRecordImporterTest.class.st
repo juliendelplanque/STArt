@@ -27,7 +27,7 @@ STArtDBLPRecordImporterTest >> testImport [
 <url>db/conf/icse/icse2019.html#DelplanqueDPBE19</url>
 </inproceedings>
 </dblp>'.
-	model := STArtMooseModel new.
+	model := STArtModel new.
 	importedPaper := STArtDBLPRecordImporter new
 		model: model;
 		xmlString: dblpXml;
@@ -36,4 +36,5 @@ STArtDBLPRecordImporterTest >> testImport [
 	self assert: (model allWithType: STArtAuthor) size equals: 5.
 	self assert: (model allWithType: STArtWrote) size equals: 5. "Each author wrote 1 paper"
 	self assert: (model allWithType: STArtPaper) size equals: 1.
+	self assert: (model allWithType: STArtConference) size equals: 1.
 ]
