@@ -47,6 +47,22 @@ STArtModel >> saveInFile: aFileReference [
 		self exportToMSEStream: stream ]
 ]
 
+{ #category : #saving }
+STArtModel >> saveNewVersionInDirectory: aFileReference [
+	"Save the model as MSE file in aFileReference directory.
+	 Create a file named 'start-yyyy-mm-dd.hh-MM-ss.mse'
+	 With
+		- yyyy being the year at saving
+		- mm being the month at saving
+		- dd being the day at saving
+		- hh being the hour at saving
+		- MM being the minute at saving
+		- ss being the second at saving
+	This method allow to version the model in a simple way.
+	"
+	^ self saveInFile: aFileReference asFileReference / ('start-' , DateAndTime now asFileNameCompatibleString , '.mse')
+]
+
 { #category : #'serialize/materialize' }
 STArtModel >> serializeOn: stream [
 	stream nextPutAll: '<start>'; nextPutAll: Smalltalk os lineEnding.
