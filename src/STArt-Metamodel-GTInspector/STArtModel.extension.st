@@ -15,7 +15,7 @@ STArtModel >> gtInspectorActionImportDBLPRecord [
 	^ GLMGenericAction new
 		action: [ :composite | 
 			(STArtDBLPImporterSpec on: self) openWithSpec];
-		icon: (self iconNamed: #dblpImportIcon);
+		icon: (self iconNamed: #add);
 		title: 'Import dblp record'
 ]
 
@@ -25,7 +25,7 @@ STArtModel >> gtInspectorActionSearchDBLP [
 	^ GLMGenericAction new
 		action: [ :composite | 
 			(STArtDBLPExplorerSpec on: self) openWithSpec];
-		icon: (self iconNamed: #dblpSearchIcon);
+		icon: (self iconNamed: #smallFind);
 		title: 'Search dblp'
 ]
 
