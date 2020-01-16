@@ -16,6 +16,7 @@ STArtInspectorExtensionBuilder class >> gtShowAuthorsIn: composite [
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
 		column: 'Name' evaluated: [ :author | author name ];
+		column: '# papers (in model)' evaluated: [ :author | author papersCount ];
 		send: [ :result | 
 			result isNil
 				ifTrue: [ nil ]

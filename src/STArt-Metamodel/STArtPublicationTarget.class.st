@@ -43,3 +43,8 @@ STArtPublicationTarget >> papers: anObject [
 	<generated>
 	papers value: anObject
 ]
+
+{ #category : #accessing }
+STArtPublicationTarget >> papersCount [
+	^ self papers size
+]

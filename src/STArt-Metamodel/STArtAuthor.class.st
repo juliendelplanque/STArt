@@ -30,6 +30,11 @@ STArtAuthor >> isAuthor [
 ]
 
 { #category : #accessing }
+STArtAuthor >> papersCount [
+	^ self writtenPapers size
+]
+
+{ #category : #accessing }
 STArtAuthor >> writtenPapers [
 	^ self wrote collect: #paper
 ]
