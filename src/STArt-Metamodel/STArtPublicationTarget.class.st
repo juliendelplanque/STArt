@@ -29,6 +29,11 @@ STArtPublicationTarget >> authors [
 ]
 
 { #category : #accessing }
+STArtPublicationTarget >> kind [
+	^ self className allButFirst: 'STArt' size
+]
+
+{ #category : #accessing }
 STArtPublicationTarget >> papers [
 	"Relation named: #papers type: #STArtPaper opposite: #publicationTarget"
 

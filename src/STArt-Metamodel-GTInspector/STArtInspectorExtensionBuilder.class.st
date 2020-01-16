@@ -40,6 +40,8 @@ STArtInspectorExtensionBuilder class >> gtShowPapersIn: composite [
 		column: 'Title' evaluated: [ :paper | paper title ] width: 400;
 		column: 'Year' evaluated: [ :paper | paper year ] width: 40;
 		column: 'Authors' evaluated: [ :paper | paper authorNamesSeparatedByColons ];
+		column: 'Publication target' evaluated: [ :paper | paper publicationTarget name ];
+		column: 'Kind of publication target' evaluated: [ :paper | paper publicationTarget kind ];
 		send: [ :result | 
 			result isNil
 				ifTrue: [ nil ]
