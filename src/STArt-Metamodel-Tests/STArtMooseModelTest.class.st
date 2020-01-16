@@ -12,7 +12,7 @@ Class {
 
 { #category : #running }
 STArtMooseModelTest >> setUp [
-	model := STArtMooseModel new
+	model := STArtModel new
 ]
 
 { #category : #tests }
