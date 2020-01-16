@@ -19,7 +19,7 @@ STArtDBLPRecordImporter class >> import: xmlString in: model [
 { #category : #importing }
 STArtDBLPRecordImporter >> addAuthorsFrom: soup to: paper [
 	| rawAuthors |
-	rawAuthors := (soup findAllTags: 'author') collect: #string.
+	rawAuthors := (soup allElementsSelect: [ :n | n name = 'author' ]) collect: [ :n | n contentString trimmed ].
 	rawAuthors do: [ :rawAuthor |
 		self newWrote
 			author: ((self model allWithType: STArtAuthor)
@@ -34,7 +34,7 @@ STArtDBLPRecordImporter >> addAuthorsFrom: soup to: paper [
 { #category : #importing }
 STArtDBLPRecordImporter >> addConferenceOrWorkshopPaperFrom: xml to: paper [
 	| conferenceName |
-	conferenceName := (xml findTag: 'booktitle') string trimmed.
+	conferenceName := (xml allElementsDetect: [ :n | n name = 'booktitle' ]) contentString trimmed.
 	
 	paper publicationTarget: ((self model allWithType: STArtConference)
 		detect: [ :conference | conference name = conferenceName ]
@@ -47,7 +47,7 @@ STArtDBLPRecordImporter >> addConferenceOrWorkshopPaperFrom: xml to: paper [
 { #category : #importing }
 STArtDBLPRecordImporter >> addJournalPaperFrom: xml to: paper [
 	| journalName |
-	journalName := (xml findTag: 'journal') string trimmed.
+	journalName := (xml allElementsDetect: [ :n | n name = 'journal' ]) contentString trimmed.
 	
 	paper publicationTarget: ((self model allWithType: STArtJournal)
 		detect: [ :journal | journal name = journalName ]
@@ -59,12 +59,12 @@ STArtDBLPRecordImporter >> addJournalPaperFrom: xml to: paper [
 
 { #category : #importing }
 STArtDBLPRecordImporter >> addPublicationTargetFrom: xml to: paper [
-	((xml findTag: 'dblp') children select: #isTag) first name = 'inproceedings'
-		ifTrue: [ 
+	(xml allElementsDetect: [ :n | n name = 'inproceedings' ])
+		ifNotNil: [ 
 			^ self addConferenceOrWorkshopPaperFrom: xml to: paper ].
 		
-	((xml findTag: 'dblp') children select: #isTag) first name = 'article'
-		ifTrue: [ 
+	(xml allElementsDetect: [ :n | n name = 'article' ])
+		ifNotNil: [ 
 			^ self addJournalPaperFrom: xml to: paper ].
 		
 	self error: 'Unknown publication target type for entry to import.'
@@ -78,8 +78,8 @@ STArtDBLPRecordImporter >> import [
 	source content: self xmlString.
 	paper := self newPaper.
 	paper
-		title: (xml findTag: 'title') string trimmed;
-		year: (xml findTag: 'year') string trimmed asInteger;
+		title: (xml allElementsDetect: [ :n | n name = 'title' ]) contentString trimmed;
+		year: (xml allElementsDetect: [ :n | n name = 'year' ]) contentString trimmed asInteger;
 		source: source.
 		
 	self addAuthorsFrom: xml to: paper.
@@ -141,10 +141,10 @@ STArtDBLPRecordImporter >> newWrote [
 
 { #category : #parsing }
 STArtDBLPRecordImporter >> parseXMLString [
-	| soup |
-	soup := Soup fromString: self xmlString.
-	self assert: (soup children anySatisfy: [ :child | child name = 'dblp' ]).
-	^ soup
+	| xml |
+	xml := self xmlString parseXML.
+	self assert: (xml nodes anySatisfy: [ :child | child name = 'dblp' ]).
+	^ xml
 ]
 
 { #category : #accessing }
