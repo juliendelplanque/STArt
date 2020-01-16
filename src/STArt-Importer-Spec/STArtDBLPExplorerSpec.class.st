@@ -35,7 +35,7 @@ STArtDBLPExplorerSpec >> importSelectedPaper [
 	| dblpXml |
 	self results selectedItem ifNil: [ self error: 'Not item selected.' ].
 
-	dblpXml := (((self results selectedItem findTag: 'info') findTag: 'url') string trim , '.xml') asZnUrl retrieveContents.
+	dblpXml := (((self results selectedItem allElementsDetect: [ :n | n name = 'info' ]) allElementsDetect: [ :n | n name = 'url' ]) contentString trimmed , '.xml') asZnUrl retrieveContents.
 	
 	(STArtDBLPImporterSpec on: self model)
 		xmlContent: dblpXml;
@@ -55,13 +55,13 @@ STArtDBLPExplorerSpec >> initializeWidgets [
 	results := self newList.
 	importButton := self newButton.
 	
-	urlTextInput autoAccept: true..
+	urlTextInput autoAccept: true.
 	searchButton
 		label: 'Search';
 		action: [ self searchDBLPAndFillResults ].
 	results
 		displayBlock: [ :item |
-			item ifNotNil: [ (item findTag: 'title') string, ' - ' , (item findTag: 'year') string ] ];
+			item ifNotNil: [ (item allElementsDetect: [ :n | n name = 'title' ]) contentString trimmed , ' - ' , (item allElementsDetect: [ :n | n name = 'year' ]) contentString trimmed , ' - ' , (((item allElementsSelect: [ :n | n name = 'author' ]) collect: [ :n | n contentString trimmed ] as: OrderedCollection) joinUsing: ', ') ] ];
 		whenSelectedItemChanged: [ :item |
 			importButton enabled: item isNotNil ].
 		
@@ -94,14 +94,14 @@ STArtDBLPExplorerSpec >> searchButton [
 { #category : #actions }
 STArtDBLPExplorerSpec >> searchDBLPAndFillResults [
 	| s |
-	s := Soup fromString: ('https://dblp.uni-trier.de/search/publ/api' asZnUrl
+	s := ('https://dblp.uni-trier.de/search/publ/api' asZnUrl
 			queryAt: 'q' put: self urlTextInput getText asString;
 			queryAt: 'h' put: '1000';
 			queryAt: 'format' put: 'xml';
-			retrieveContents).
+			retrieveContents) parseXML.
 	
 	results resetSelection.
-	results items: (s findAllTags: 'hit').
+	results items: (s allElementsSelect: [ :n | n name = 'hit' ]).
 ]
 
 { #category : #'model access' }
