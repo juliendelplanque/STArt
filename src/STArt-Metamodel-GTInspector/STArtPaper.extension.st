@@ -1,8 +1,8 @@
 Extension { #name : #STArtPaper }
 
 { #category : #'*STArt-Metamodel-GTInspector' }
-STArtPaper >> gtAuthorsIn:  composite [
-	<gtInspectorPresentationOrder: 10> 
+STArtPaper >> gtAuthorsIn: composite [
+	<gtInspectorPresentationOrder: 0> 
 	^ (self gtShowAuthorsIn: composite)
 		title: 'Authors';
 		display: [ self authors ];
@@ -11,7 +11,7 @@ STArtPaper >> gtAuthorsIn:  composite [
 
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtPaper >> gtCitedPapersIn: composite [
-	<gtInspectorPresentationOrder: 11> 
+	<gtInspectorPresentationOrder: 1> 
 	^ (self gtShowPapersIn: composite)
 		title: 'Cited Papers';
 		display: [ self citedPapers ];
@@ -20,7 +20,7 @@ STArtPaper >> gtCitedPapersIn: composite [
 
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtPaper >> gtCitingPapersIn: composite [
-	<gtInspectorPresentationOrder: 12> 
+	<gtInspectorPresentationOrder: 2> 
 	^ (self gtShowPapersIn: composite)
 		title: 'Citing Papers';
 		display: [ self citingPapers ];
