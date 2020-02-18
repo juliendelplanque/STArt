@@ -5,6 +5,16 @@ Class {
 }
 
 { #category : #actions }
+STArtInspectorExtensionBuilder class >> gtInspectorActionAddTopic [
+	^ GLMGenericAction new
+		action: [ :composite | 
+			self halt: 'TODO' ];
+		icon: (self iconNamed: #smallAdd);
+		title: 'Add topic';
+		yourself
+]
+
+{ #category : #actions }
 STArtInspectorExtensionBuilder class >> gtInspectorActionImportDBLPRecord [
 	^ GLMGenericAction new
 		action: [ :composite | 
@@ -68,5 +78,27 @@ STArtInspectorExtensionBuilder class >> gtShowPapersIn: composite [
 				ifFalse: [ result size = 1 
 					ifTrue: [result anyOne ]  
 					ifFalse: [self species withAll: result]]];
+		yourself
+]
+
+{ #category : #'extension building' }
+STArtInspectorExtensionBuilder class >> gtShowTopicsIn: composite [
+	"Builds a fast table configured to display topics data.
+	 The goal for this method is to avoid duplicating the code everywhere as topic
+	 tab is something often needed in inspector views.
+	"
+	^ composite fastTable
+		title: 'Topics';
+		beMultiple;
+		enableElementIndex;
+		wantsAutomaticRefresh: true;
+		column: 'Name' evaluated: [ :topic | topic name ];
+		column: 'Description' evaluated: [ :topic | topic description ];
+		send: [ :result | 
+			result isNil
+				ifTrue: [ nil ]
+				ifFalse: [ result size = 1 
+					ifTrue: [result anyOne ]  
+					ifFalse: [self species withAll: result ]]];
 		yourself
 ]

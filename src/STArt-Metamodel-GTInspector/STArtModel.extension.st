@@ -39,3 +39,13 @@ STArtModel >> gtPublicationTargetsIn: composite [
 					ifTrue: [result anyOne ]  
 					ifFalse: [self species withAll: result]]]
 ]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtModel >> gtTopicsIn:  composite [
+	<gtInspectorPresentationOrder: 3> 
+	^ (STArtInspectorExtensionBuilder gtShowTopicsIn: composite)
+		title: 'Topics';
+		display: [ self topics ];
+		addAction: STArtInspectorExtensionBuilder gtInspectorActionAddTopic;
+		yourself
+]

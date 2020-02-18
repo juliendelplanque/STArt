@@ -72,3 +72,8 @@ STArtModel >> serializeOn: stream [
 			stream nextPutAll: Smalltalk os lineEnding ].
 	stream nextPutAll: '</start>'; nextPutAll: Smalltalk os lineEnding.
 ]
+
+{ #category : #querying }
+STArtModel >> topics [
+	^ self allWithType: STArtTopic
+]

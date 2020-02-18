@@ -105,7 +105,10 @@ STArtMetamodelGenerator >> defineProperties [
 		property: #year type: #Number.
 		
 	paperMetaDataStringSource
-		property: #content type: #String
+		property: #content type: #String.
+		
+	topic
+		property: 'description' type: #String
 ]
 
 { #category : #definition }
