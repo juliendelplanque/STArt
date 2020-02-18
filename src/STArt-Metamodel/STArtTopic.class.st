@@ -59,3 +59,13 @@ STArtTopic >> isTopic [
 	<generated>
 	^ true
 ]
+
+{ #category : #accessing }
+STArtTopic >> papers [
+	^ self incomingReferences collect: #paper
+]
+
+{ #category : #accessing }
+STArtTopic >> papersCount [
+	^ self papers size
+]

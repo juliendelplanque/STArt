@@ -46,6 +46,7 @@ STArtModel >> gtTopicsIn:  composite [
 	^ (STArtInspectorExtensionBuilder gtShowTopicsIn: composite)
 		title: 'Topics';
 		display: [ self topics ];
+		column: '# papers (in model)' evaluated: [ :topic | topic papersCount ];
 		addAction: STArtInspectorExtensionBuilder gtInspectorActionAddTopic;
 		yourself
 ]

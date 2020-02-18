@@ -220,6 +220,11 @@ STArtPaper >> title: anObject [
 ]
 
 { #category : #accessing }
+STArtPaper >> topics [
+	^ self outgoingTopicReferences collect: #topic
+]
+
+{ #category : #accessing }
 STArtPaper >> written [
 	"Relation named: #written type: #STArtWrote opposite: #paper"
 

@@ -1,36 +1,23 @@
 Class {
 	#name : #STArtCitationAdder,
-	#superclass : #ComposablePresenter,
-	#instVars : [
-		'paperToAddCitationTo',
-		'listOfPapers',
-		'addCitationButton'
-	],
+	#superclass : #STArtEntitiesLinker,
 	#category : #'STArt-Importer-Spec'
 }
 
-{ #category : #specs }
-STArtCitationAdder class >> defaultSpec [
-
-	^ SpecLayout composed
-		newColumn: [ :column |
-			column
-				newRow: #listOfPapers;
-				newRow: #addCitationButton height: self buttonHeight ]
-]
-
-{ #category : #accessing }
-STArtCitationAdder >> addCitationButton [
-	^ addCitationButton
+{ #category : #initialization }
+STArtCitationAdder >> candidateEntitiesToLinkTo [
+	^ self entityToCreateLinkFrom mooseModel papers
+		\ self entityToCreateLinkFrom citedPapers
+		\ {self entityToCreateLinkFrom}
+		select: [ :p | p year <= self entityToCreateLinkFrom year ]
 ]
 
 { #category : #adding }
-STArtCitationAdder >> addSelectedPaperAsCitation [
-	self listOfPapers selectedItem
-		ifNil: [ self error: 'No paper selected' ].
-		
-	self paperToAddCitationTo addCitedPaper: self listOfPapers selectedItem.
-	self delete.
+STArtCitationAdder >> createLinkToSelectedEntity [
+	self checkEntityIsSelected.
+	self entityToCreateLinkFrom
+		addCitedPaper: self listOfEntities selectedItem.
+	self delete
 ]
 
 { #category : #initialization }
@@ -41,37 +28,7 @@ STArtCitationAdder >> initialize [
 
 { #category : #initialization }
 STArtCitationAdder >> initializeWidgets [
-	listOfPapers := self newList.
-	listOfPapers
-		displayBlock: [ :p |
-			p ifNotNil: [ p title , ', ' , p year asString , ', ' , p authorNamesSeparatedByColons ] ];
-		items: ((self paperToAddCitationTo mooseModel papers
-					\ self paperToAddCitationTo citedPapers
-					\ { self paperToAddCitationTo }) select: [ :p | p year <= self paperToAddCitationTo year ]).
-	
-	addCitationButton := self newButton.
-	
-	addCitationButton
-		label: 'Add citation';
-		action: [ self addSelectedPaperAsCitation ]
-]
-
-{ #category : #accessing }
-STArtCitationAdder >> listOfPapers [
-	^ listOfPapers
-]
-
-{ #category : #accessing }
-STArtCitationAdder >> paperToAddCitationTo [
-	^ paperToAddCitationTo
-]
-
-{ #category : #accessing }
-STArtCitationAdder >> paperToAddCitationTo: anObject [
-	paperToAddCitationTo := anObject
-]
-
-{ #category : #'model access' }
-STArtCitationAdder >> setModelBeforeInitialization: aModel [
-	self paperToAddCitationTo: aModel
+	super initializeWidgets.
+	listOfEntities displayBlock: [ :p | p title , ', ' , p year asString , ', ' , p authorNamesSeparatedByColons ].
+	addLinkButton label: 'Add citation'
 ]

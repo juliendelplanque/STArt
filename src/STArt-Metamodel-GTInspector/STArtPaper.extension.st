@@ -36,3 +36,23 @@ STArtPaper >> gtInspectorActionAddCitedPaper [
 		icon: (self iconNamed: #up);
 		title: 'Add cited paper'
 ]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtPaper >> gtInspectorActionAddTopic [
+	<gtInspectorAction>
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtTopicAdder on: self) openWithSpec ];
+		icon: (self iconNamed: #uncommentedClass);
+		title: 'Add topic'
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtPaper >> gtTopicsIn: composite [
+	<gtInspectorPresentationOrder: 3> 
+	^ (STArtInspectorExtensionBuilder gtShowTopicsIn: composite)
+		title: 'Topics';
+		display: [ self topics ];
+		addAction: STArtInspectorExtensionBuilder gtInspectorActionAddTopic;
+		yourself
+]
