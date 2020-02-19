@@ -108,7 +108,7 @@ STArtMetamodelGenerator >> defineProperties [
 		property: #content type: #String.
 		
 	topic
-		property: 'description' type: #String
+		property: #topicDescription type: #String
 ]
 
 { #category : #definition }

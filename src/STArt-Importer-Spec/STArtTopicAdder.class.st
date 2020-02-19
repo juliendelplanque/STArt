@@ -26,6 +26,6 @@ STArtTopicAdder >> initialize [
 { #category : #initialization }
 STArtTopicAdder >> initializeWidgets [
 	super initializeWidgets.
-	listOfEntities displayBlock: [ :p | p name , ' - ' , p description ].
+	listOfEntities displayBlock: [ :p | p name , ' - ' , p topicDescription ].
 	addLinkButton label: 'Add topic'
 ]

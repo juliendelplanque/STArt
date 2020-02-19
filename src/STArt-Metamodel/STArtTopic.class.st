@@ -2,8 +2,8 @@ Class {
 	#name : #STArtTopic,
 	#superclass : #STArtNamedEntity,
 	#instVars : [
-		'#description => FMProperty',
-		'#incomingReferences => FMMany type: #STArtTopicReference opposite: #topic'
+		'#incomingReferences => FMMany type: #STArtTopicReference opposite: #topic',
+		'#topicDescription => FMProperty'
 	],
 	#category : #'STArt-Metamodel-Entities'
 }
@@ -21,20 +21,6 @@ STArtTopic class >> annotation [
 STArtTopic >> addIncomingReference: anObject [
 	<generated>
 	^ self incomingReferences add: anObject
-]
-
-{ #category : #accessing }
-STArtTopic >> description [
-
-	<FMProperty: #description type: #String>
-	<generated>
-	^ description
-]
-
-{ #category : #accessing }
-STArtTopic >> description: anObject [
-	<generated>
-	description := anObject
 ]
 
 { #category : #accessing }
@@ -68,4 +54,18 @@ STArtTopic >> papers [
 { #category : #accessing }
 STArtTopic >> papersCount [
 	^ self papers size
+]
+
+{ #category : #accessing }
+STArtTopic >> topicDescription [
+
+	<FMProperty: #topicDescription type: #String>
+	<generated>
+	^ topicDescription
+]
+
+{ #category : #accessing }
+STArtTopic >> topicDescription: anObject [
+	<generated>
+	topicDescription := anObject
 ]

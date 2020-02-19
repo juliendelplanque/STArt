@@ -93,7 +93,7 @@ STArtInspectorExtensionBuilder class >> gtShowTopicsIn: composite [
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
 		column: 'Name' evaluated: [ :topic | topic name ];
-		column: 'Description' evaluated: [ :topic | topic description ];
+		column: 'Description' evaluated: [ :topic | topic topicDescription ];
 		send: [ :result | 
 			result isNil
 				ifTrue: [ nil ]
