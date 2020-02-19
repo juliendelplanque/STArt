@@ -10,13 +10,33 @@ STArtModel >> gtAuthorsIn: composite [
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }
+STArtModel >> gtInspectorActionImportDBLPRecord [
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtDBLPImporterSpec on: self) openWithSpec];
+		icon: (self iconNamed: #add);
+		title: 'Import dblp record';
+		yourself
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
+STArtModel >> gtInspectorActionSearchDBLP [
+	^ GLMGenericAction new
+		action: [ :composite | 
+			(STArtDBLPExplorerSpec on: self) openWithSpec];
+		icon: (self iconNamed: #smallFind);
+		title: 'Search dblp';
+		yourself
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
 STArtModel >> gtPapersIn:  composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ (STArtInspectorExtensionBuilder gtShowPapersIn: composite)
 		title: 'Papers';
 		display: [ self papers ];
-		addAction: STArtInspectorExtensionBuilder gtInspectorActionImportDBLPRecord;
-		addAction: STArtInspectorExtensionBuilder gtInspectorActionSearchDBLP;
+		addAction: self gtInspectorActionImportDBLPRecord;
+		addAction: self gtInspectorActionSearchDBLP;
 		yourself
 ]
 

@@ -14,26 +14,6 @@ STArtInspectorExtensionBuilder class >> gtInspectorActionAddTopic [
 		yourself
 ]
 
-{ #category : #actions }
-STArtInspectorExtensionBuilder class >> gtInspectorActionImportDBLPRecord [
-	^ GLMGenericAction new
-		action: [ :composite | 
-			(STArtDBLPImporterSpec on: self) openWithSpec];
-		icon: (self iconNamed: #add);
-		title: 'Import dblp record';
-		yourself
-]
-
-{ #category : #actions }
-STArtInspectorExtensionBuilder class >> gtInspectorActionSearchDBLP [
-	^ GLMGenericAction new
-		action: [ :composite | 
-			(STArtDBLPExplorerSpec on: self) openWithSpec];
-		icon: (self iconNamed: #smallFind);
-		title: 'Search dblp';
-		yourself
-]
-
 { #category : #'extension building' }
 STArtInspectorExtensionBuilder class >> gtShowAuthorsIn: composite [
 	"Builds a fast table configured to display authors data.
