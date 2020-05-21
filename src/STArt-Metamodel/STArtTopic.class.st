@@ -24,6 +24,11 @@ STArtTopic >> addIncomingReference: anObject [
 ]
 
 { #category : #accessing }
+STArtTopic >> authors [
+	^ (self papers flatCollect: #authors) removeDuplicates
+]
+
+{ #category : #accessing }
 STArtTopic >> incomingReferences [
 	"Relation named: #incomingReferences type: #STArtTopicReference opposite: #topic"
 
