@@ -43,21 +43,10 @@ STArtModel >> gtPapersIn:  composite [
 { #category : #'*STArt-Metamodel-GTInspector' }
 STArtModel >> gtPublicationTargetsIn: composite [
 	<gtInspectorPresentationOrder: 2> 
-	^ composite fastTable
+	^ (STArtInspectorExtensionBuilder gtPublicationTargetsIn: composite)
 		title: 'Publication targets';
 		display: [ self publicationTargets ];
-		beMultiple;
-		enableElementIndex;
-		wantsAutomaticRefresh: true;
-		column: 'Name' evaluated: [ :target | target name ];
-		column: 'Kind' evaluated: [ :target | target className allButFirst: 'STArt' size ];
-		column: '# papers (in model)' evaluated: [ :target | target papersCount ];
-		send: [ :result | 
-			result isNil
-				ifTrue: [ nil ]
-				ifFalse: [ result size = 1 
-					ifTrue: [result anyOne ]  
-					ifFalse: [self species withAll: result]]]
+		yourself
 ]
 
 { #category : #'*STArt-Metamodel-GTInspector' }

@@ -15,6 +15,24 @@ STArtInspectorExtensionBuilder class >> gtInspectorActionAddTopic [
 ]
 
 { #category : #'extension building' }
+STArtInspectorExtensionBuilder class >> gtPublicationTargetsIn: composite [
+	^ composite fastTable
+		beMultiple;
+		enableElementIndex;
+		wantsAutomaticRefresh: true;
+		column: 'Name' evaluated: [ :target | target name ];
+		column: 'Kind' evaluated: [ :target | target className allButFirst: 'STArt' size ];
+		column: '# papers (in model)' evaluated: [ :target | target papersCount ];
+		send: [ :result | 
+			result isNil
+				ifTrue: [ nil ]
+				ifFalse: [ result size = 1 
+					ifTrue: [result anyOne ]  
+					ifFalse: [self species withAll: result]]];
+		yourself
+]
+
+{ #category : #'extension building' }
 STArtInspectorExtensionBuilder class >> gtShowAuthorsIn: composite [
 	"Builds a fast table configured to display authors data.
 	 The goal for this method is to avoid duplicating the code everywhere as authors

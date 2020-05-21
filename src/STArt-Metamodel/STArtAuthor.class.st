@@ -22,6 +22,11 @@ STArtAuthor >> addWrote: anObject [
 	^ self wrote add: anObject
 ]
 
+{ #category : #accessing }
+STArtAuthor >> coAuthors [
+	^ ((self writtenPapers flatCollect: #authors) asSet \ { self }) asArray
+]
+
 { #category : #testing }
 STArtAuthor >> isAuthor [
 
@@ -32,6 +37,11 @@ STArtAuthor >> isAuthor [
 { #category : #accessing }
 STArtAuthor >> papersCount [
 	^ self writtenPapers size
+]
+
+{ #category : #accessing }
+STArtAuthor >> publicationTargets [
+	^ (self writtenPapers collect: #publicationTarget) removeDuplicates
 ]
 
 { #category : #accessing }
