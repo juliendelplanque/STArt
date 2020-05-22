@@ -1,6 +1,14 @@
 Extension { #name : #STArtPaper }
 
 { #category : #'*STArt-Metamodel-GTInspector' }
+STArtPaper >> gtAsFullTextIn: composite [
+	<gtInspectorPresentationOrder: 4>
+	composite text
+		title: 'As text';
+		display: [ self asMultiLinesString ]
+]
+
+{ #category : #'*STArt-Metamodel-GTInspector' }
 STArtPaper >> gtAuthorsIn: composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ (self gtShowAuthorsIn: composite)

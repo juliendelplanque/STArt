@@ -75,6 +75,16 @@ STArtPaper >> addWritten: anObject [
 	^ self written add: anObject
 ]
 
+{ #category : #converting }
+STArtPaper >> asMultiLinesString [
+	^ String streamContents: [ :stream |
+		stream
+			nextPutAll: self title; nextPut: Character lf;
+			nextPutAll: self authorNamesSeparatedByColons; nextPut: Character lf;
+			nextPutAll: self publicationTarget name; nextPut: Character lf;
+			nextPutAll: self year asString ]
+]
+
 { #category : #accessing }
 STArtPaper >> authorNamesSeparatedByColons [
 	^ (self authors collect: #name) joinUsing: ', '
