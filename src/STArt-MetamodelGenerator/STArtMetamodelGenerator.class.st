@@ -15,7 +15,8 @@ Class {
 		'publicationTarget',
 		'conference',
 		'journal',
-		'workshop'
+		'workshop',
+		'book'
 	],
 	#category : #'STArt-MetamodelGenerator'
 }
@@ -55,6 +56,7 @@ STArtMetamodelGenerator >> defineClasses [
 	publicationTarget := builder newClassNamed: #PublicationTarget.
 	conference := builder newClassNamed: #Conference.
 	journal := builder newClassNamed: #Journal.
+	book := builder newClassNamed: #Book.
 	workshop := builder newClassNamed: #Workshop.
 	paperMetaDataSource := builder newClassNamed: #'PaperMetaDataSource'.
 	paperMetaDataStringSource := builder newClassNamed: #'PaperMetaDataStringSource'.
@@ -86,6 +88,7 @@ STArtMetamodelGenerator >> defineHierarchy [
 	publicationTarget --|> namedEntity.
 	conference --|> publicationTarget.
 	journal --|> publicationTarget.
+	book --|> publicationTarget.
 	workshop --|> publicationTarget.
 	paperMetaDataSource --|> entity.
 	paperMetaDataStringSource --|> paperMetaDataSource.

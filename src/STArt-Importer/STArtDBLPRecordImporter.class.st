@@ -32,6 +32,19 @@ STArtDBLPRecordImporter >> addAuthorsFrom: soup to: paper [
 ]
 
 { #category : #importing }
+STArtDBLPRecordImporter >> addBookPaperFrom: xml to: paper [
+	| journalName |
+	journalName := (xml allElementsDetect: [ :n | n name = 'booktitle' ]) contentString trimmed.
+	
+	paper publicationTarget: ((self model allWithType: STArtBook)
+		detect: [ :journal | journal name = journalName ]
+		ifNone: [ 
+			self newBook
+				name: journalName;
+				yourself ])
+]
+
+{ #category : #importing }
 STArtDBLPRecordImporter >> addConferenceOrWorkshopPaperFrom: xml to: paper [
 	| conferenceName |
 	conferenceName := (xml allElementsDetect: [ :n | n name = 'booktitle' ]) contentString trimmed.
@@ -67,6 +80,10 @@ STArtDBLPRecordImporter >> addPublicationTargetFrom: xml to: paper [
 		ifNotNil: [ 
 			^ self addJournalPaperFrom: xml to: paper ].
 		
+	(xml allElementsDetect: [ :n | n name = 'book' ])
+		ifNotNil: [ 
+			^ self addBookPaperFrom: xml to: paper ].
+		
 	self error: 'Unknown publication target type for entry to import.'
 ]
 
@@ -100,6 +117,13 @@ STArtDBLPRecordImporter >> model: anObject [
 { #category : #factory }
 STArtDBLPRecordImporter >> newAuthor [
 	^ STArtAuthor new
+		mooseModel: self model;
+		yourself
+]
+
+{ #category : #factory }
+STArtDBLPRecordImporter >> newBook [
+	^ STArtBook new
 		mooseModel: self model;
 		yourself
 ]
