@@ -33,14 +33,14 @@ STArtDBLPRecordImporter >> addAuthorsFrom: soup to: paper [
 
 { #category : #importing }
 STArtDBLPRecordImporter >> addBookPaperFrom: xml to: paper [
-	| journalName |
-	journalName := (xml allElementsDetect: [ :n | n name = 'booktitle' ]) contentString trimmed.
+	| bookName |
+	bookName := (xml allElementsDetect: [ :n | n name = 'title' ]) contentString trimmed.
 	
 	paper publicationTarget: ((self model allWithType: STArtBook)
-		detect: [ :journal | journal name = journalName ]
+		detect: [ :journal | journal name = bookName ]
 		ifNone: [ 
 			self newBook
-				name: journalName;
+				name: bookName;
 				yourself ])
 ]
 
