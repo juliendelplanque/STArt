@@ -76,6 +76,7 @@ STArtInspectorExtensionBuilder class >> gtShowPapersIn: composite [
 				ifFalse: [ result size = 1 
 					ifTrue: [result anyOne ]  
 					ifFalse: [self species withAll: result]]];
+		sortBlock: #title asSortFunction;
 		yourself
 ]
 
